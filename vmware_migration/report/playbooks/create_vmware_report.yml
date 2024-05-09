@@ -1,0 +1,13 @@
+---
+- name: Generate CSV report of VMs
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    provider_name: "vmware"
+    local_provider_name: "local-ocp"
+    infra_vmware_migration_namespace: "openshift-mtv"
+
+  roles:
+    - infra.vmware_migration
+    - vmware_migration.report

@@ -1,0 +1,5 @@
+"Name","OS","CPU","Memory","Storage (GB)","Networks"
+
+{% for vm in vms %}
+"{{ vm.guest_name }}","{{ vm.guest_fullname | default('Unknown') }}","{{ vm.allocated.cpu | default('Not CPU allocated') }}","{{ vm.allocated.memory | default(0.0) }}","{{ vm.allocated.storage | default(0.0) }}", {{ vm.vm_network | default('No network assigned') }}
+{% endfor %}

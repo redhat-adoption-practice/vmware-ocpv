@@ -1,0 +1,18 @@
+---
+# tasks file for create_report
+
+- name: Gather VM information
+  vmware.vmware_vm_info:
+  register: vm_info
+
+- name: Display vm_info
+  ansible.builtin.debug:
+    var: vm_info
+  verbosity: 3
+
+- name: Create CSV report
+  ansible.builtin.template:
+    src: vm_report_template.j2
+    dest: "./vm_report.csv"
+  vars:
+    vms: "{{ vm_info.virtual_machines }}"
